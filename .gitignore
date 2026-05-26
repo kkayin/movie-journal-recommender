@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.env
+venv/
+env/
+.venv/
+
+# ML / Data files
+# (important - these get large)
+*.pkl
+*.pickle
+*.faiss
+*.npy
+embeddings/
+
+# FastAPI
+.pytest_cache/
+
+# React / Node
+node_modules/
+dist/
+build/
+.env.local
+.env.production
+
+# API Keys
+# (critical - never commit these)
+.env*
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+# (if you experiment)
+.ipynb_checkpoints/
