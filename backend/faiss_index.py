@@ -38,7 +38,7 @@ def search_similar_movies(journal_embedding, top_k=3):
             "overview": movie["overview"],
             "poster_path": movie["poster_path"],
             "vote_average": movie["vote_average"],
-            "similarity": round(float(scores[0][i]), 3)
+            "similarity_score": round(float(scores[0][i]), 3)
         })
 
     return results
