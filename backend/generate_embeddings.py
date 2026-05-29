@@ -17,3 +17,4 @@ np.save("movie_embeddings.npy", embeddings)
 print(f"Done! Saved {len(df)} embeddings to  movie_embeddings.npy")
 
 
+

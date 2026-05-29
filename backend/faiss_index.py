@@ -51,4 +51,4 @@ if __name__ == "__main__":
 
     results = search_similar_movies(embedding)
     for movie in results:
-        print(f"{movie['title']} (Similarity: {movie['similarity']})")
+        print(f"{movie['title']} (Similarity: {movie['similarity_score']})")

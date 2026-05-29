@@ -25,7 +25,7 @@ EMOTION_THEMES = {
 
 def analyze_journal(text: str):
     # Get emotion
-    result = emotion_model(text)
+    result = emotion_model(text, truncation=True, max_length=512)
     emotion = result[0][0]["label"].lower()
     confidence = result[0][0]["score"]
 

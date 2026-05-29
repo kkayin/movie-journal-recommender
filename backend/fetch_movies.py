@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.getenv("TMDB_API_KEY")
 print(f"Using TMDB API Key: {API_KEY}")
-def fetch_movies(num_pages=25):
+def fetch_movies(num_pages=50):
     movies = []
     for page in range(1, num_pages + 1):
         url = f"https://api.themoviedb.org/3/movie/popular?api_key={API_KEY}&language=en-US&page={page}"
@@ -28,7 +28,7 @@ def fetch_movies(num_pages=25):
     return movies
 
 if __name__ == "__main__":
-    movies = fetch_movies(num_pages=25)
+    movies = fetch_movies(num_pages=50)
     df = pd.DataFrame(movies)
     df.to_csv("movies.csv", index=False)
     print(f"Saved {len(df)} movies to movies.csv")
