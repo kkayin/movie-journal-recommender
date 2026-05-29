@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from emotion_classifier import analyze_journal
 from faiss_index import search_similar_movies
 from explainer import generate_explanation
+from ranker import hybrid_rank
 
 app = FastAPI()
 
@@ -38,7 +39,7 @@ def recommend(input: JournalInput):
     embedding = analysis["embedding"]
 
     # Step 2: Find similar movies via FAISS
-    movies = search_similar_movies(embedding, top_k=3)
+    movies = search_similar_movies(embedding, top_k=20)
 
     # Step 3: Generate explanation for each movie
     recommendations = []
@@ -52,6 +53,9 @@ def recommend(input: JournalInput):
             "similarity_score": movie["similarity_score"],
             "explanation": explanation
         })
+
+    # Step 4: Re-rank movies using hybrid scoring
+    recommendations = hybrid_rank(recommendations)
 
     return {
         "emotion": emotion,
