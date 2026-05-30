@@ -12,17 +12,6 @@ Journal to Film analyzes the emotional tone of a user's journal entry and recomm
 - **Backend (Python):** Emotion classification, semantic embedding, vector search, hybrid ranking
 - **Communication:** REST API over localhost
 
-Journal Entry
-↓
-Emotion Classification (HuggingFace)
-↓
-SBERT Semantic Embedding
-↓
-FAISS Vector Search (top-20 candidates)
-↓
-Hybrid Re-Ranking (semantic similarity + film rating)
-↓
-Explanation Generation
 
 ## Quick Start
 
@@ -51,3 +40,4 @@ npm run dev
 ## Known Limitations
 
 The explanation layer currently uses keyword matching for theme detection. A future improvement would replace this with semantic embedding similarity.
+UX Design to be improved as well.
