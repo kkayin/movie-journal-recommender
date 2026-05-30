@@ -8,7 +8,10 @@ export default function App() {
   const [hovered, setHovered] = useState({})
 
   const handleSubmit = async () => {
-    if (!journal.trim()) return
+    if (!journal.trim() || journal.trim().length < 10) {
+      setError("Please write at least a sentence about how you're feeling.")
+    return
+    }
     
     setLoading(true)
     setError(null)
@@ -55,8 +58,14 @@ export default function App() {
             className="w-full h-40 bg-gray-900 border border-gray-700 rounded-xl p-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 resize-none"
             placeholder="Write about how you're feeling today..."
             value={journal}
-            onChange={(e) => setJournal(e.target.value)}
+            onChange={(e) => {
+              setJournal(e.target.value)
+              setError(null)
+            }}
           />
+          <p className="text-gray-500 text-xs mt-1 text-right">
+            {journal.length} characters {journal.length < 10 && journal.length > 0 ? "— write a bit more!" : ""}
+          </p>
           <button
             onClick={handleSubmit}
             disabled={loading}
