@@ -42,7 +42,7 @@ npm run dev
 
 - **Frontend:** React, Tailwind CSS, Vite
 - **Backend:** Python, FastAPI, HuggingFace Transformers, Sentence-Transformers, FAISS, scikit-learn
-- **Data:** TMDB API (997 films)
+- **Data:** TMDB API 
 
 ## Known Limitations
 
