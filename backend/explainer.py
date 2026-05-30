@@ -1,3 +1,5 @@
+import random
+
 EMOTION_DESCRIPTIONS = {
     "joy": "excitement and a desire for celebration and adventure",
     "sadness": "emotional fatigue and a need for healing and reflection",
@@ -7,7 +9,6 @@ EMOTION_DESCRIPTIONS = {
     "disgust": "disillusionment and a search for redemption",
     "neutral": "a reflective and contemplative state of mind"
 }
-
 
 EMOTION_THEMES = {
     "joy": ["celebration", "growth", "love", "adventure", "happiness"],
@@ -19,52 +20,48 @@ EMOTION_THEMES = {
     "neutral": ["journey", "identity", "everyday life", "relationships"]
 }
 
+# Multiple templates per situation so explanations feel varied
+THEME_TEMPLATES = [
+    "Your journal reflects {emotion_desc}. This film's exploration of {themes} mirrors the emotional undercurrent of your entry.",
+    "Matched because your writing carries a tone of {emotion_desc}. The narrative themes of {themes} in this film closely align with where you are emotionally.",
+    "Your entry suggests {emotion_desc}. This film resonates through its themes of {themes}, offering a cinematic reflection of your current state.",
+]
+
+FALLBACK_TEMPLATES = [
+    "Your journal reflects {emotion_desc}. The emotional atmosphere of this film aligns with your current state of mind in ways that go beyond surface themes.",
+    "Matched on emotional resonance — your writing carries a tone of {emotion_desc}, and this film's narrative arc mirrors that sentiment.",
+    "Your entry suggests {emotion_desc}. While the themes aren't explicit, the emotional DNA of this film closely matches your journal's tone.",
+]
+
 def find_overlapping_themes(emotion: str, movie_overview: str) -> list:
-    """Find which emotional themes appear in the movie overview"""
     themes = EMOTION_THEMES.get(emotion, [])
     overview_lower = movie_overview.lower()
-    
-    overlapping = []
-    for theme in themes:
-        if theme in overview_lower:
-            overlapping.append(theme)
-    
-    return overlapping
+    return [theme for theme in themes if theme in overview_lower]
 
 def generate_explanation(emotion: str, movie: dict, similarity_score: float) -> str:
-    """Generate a human readable explanation for why this movie was recommended"""
-    
-    
     emotion_desc = EMOTION_DESCRIPTIONS.get(emotion, "a reflective state of mind")
-    
-    
     overlapping_themes = find_overlapping_themes(emotion, movie["overview"])
-    
-    
+
     if overlapping_themes:
-        themes_str = " and ".join(overlapping_themes[:2])  # max 2 themes
-        explanation = (
-            f"Recommended because your journal reflects {emotion_desc}. "
-            f"This film explores themes of {themes_str}, "
-            f"closely mirroring the emotional narrative of your entry. "
-            f"Semantic similarity: {similarity_score}"
+        themes_str = " and ".join(overlapping_themes[:2])
+        template = random.choice(THEME_TEMPLATES)
+        explanation = template.format(
+            emotion_desc=emotion_desc,
+            themes=themes_str
         )
     else:
-        explanation = (
-            f"Recommended because your journal reflects {emotion_desc}. "
-            f"The emotional tone of this film closely aligns with your current state of mind. "
-            f"Semantic similarity: {similarity_score}"
-        )
-    
+        template = random.choice(FALLBACK_TEMPLATES)
+        explanation = template.format(emotion_desc=emotion_desc)
+
     return explanation
 
 if __name__ == "__main__":
     test_movie = {
         "title": "Inside Out",
-        "overview": "When 11-year-old Riley moves to a new city, her Emotions team up to help her through the transition. Joy, Fear, Anger, Disgust and Sadness work together.",
+        "overview": "When 11-year-old Riley moves to a new city, her Emotions team up to help her through the transition.",
         "similarity_score": 0.823
     }
-    
-    explanation = generate_explanation("sadness", test_movie, 0.823)
-    print(f"Movie: {test_movie['title']}")
-    print(f"Explanation: {explanation}")
+
+    for i in range(3):
+        explanation = generate_explanation("sadness", test_movie, 0.823)
+        print(f"Explanation {i+1}: {explanation}\n")
