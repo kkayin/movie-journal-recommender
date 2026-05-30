@@ -4,11 +4,11 @@ A movie recommendation system that maps personal journal entries to emotionally 
 
 ## Project Goal
 
-CineFeels analyzes the emotional tone of a user's journal entry and recommends films that match their current state of mind — explaining why each film was chosen.
+CineFeels analyzes the emotional tone of a user's journal entry and recommends films that match their current state of mind as well as explain why each film was chosen.
 
 ## Architecture
 
-- **Frontend (React):** Journal input, emotion display, movie recommendations with posters and explanations, star rating feedback
+- **Frontend (React):*e* Journal input, emotion display, movie recommendations with posters and explanations, star rating feedback
 - **Backend (Python):** Emotion classification, semantic embedding, vector search, hybrid ranking
 - **Communication:** REST API over localhost
 
