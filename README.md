@@ -1,4 +1,4 @@
-# 🎬 Journal to Film
+# CineFeels
 
 A movie recommendation system that maps personal journal entries to emotionally resonant films using NLP and semantic search.
 
