@@ -4,7 +4,7 @@ A movie recommendation system that maps personal journal entries to emotionally 
 
 ## Project Goal
 
-Journal to Film analyzes the emotional tone of a user's journal entry and recommends films that match their current state of mind — explaining why each film was chosen.
+CineFeels analyzes the emotional tone of a user's journal entry and recommends films that match their current state of mind — explaining why each film was chosen.
 
 ## Architecture
 
