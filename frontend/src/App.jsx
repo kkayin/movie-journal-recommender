@@ -48,7 +48,7 @@ export default function App() {
         
         {/* Header */}
         <div className="mb-10 text-center">
-          <h1 className="text-4xl font-bold mb-2">🎬 Journal to Film</h1>
+          <h1 className="text-4xl font-bold mb-2">🎬CineFeels</h1>
           <p className="text-gray-400">Write how you feel. We'll find the perfect film.</p>
         </div>
 
